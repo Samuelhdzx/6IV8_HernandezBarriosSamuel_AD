@@ -2,7 +2,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# Cargar el dataset
 df = pd.read_csv('housing.csv')
 
 # Calcular estadísticas para median_house_value
@@ -29,28 +28,29 @@ print(freq_table)
 # Crear histogramas comparativos
 plt.figure(figsize=(15, 5))
 
-# plt.subplot(131) significa:
-# - 1: número de filas en la cuadrícula
-# - 3: número de columnas en la cuadrícula
-# - 1: posición del subplot actual (primer lugar)
-plt.subplot(131)  # Esto crea una cuadrícula de 1x3 y selecciona el primer panel
-plt.scatter(df['total_bedrooms'], df['median_house_value'], alpha=0.5)
-plt.xlabel('Total Bedrooms')
-plt.ylabel('Median House Value')
+# Primer histograma
+plt.subplot(131)
+plt.hist(df['median_house_value'], bins=30, alpha=0.5, label='House Value')
+plt.hist(df['total_bedrooms'], bins=30, alpha=0.5, label='Total Bedrooms')
+plt.xlabel('Valor')
+plt.ylabel('Frecuencia')
 plt.title('House Value vs Bedrooms')
+plt.legend()
 
-# El segundo subplot (132) selecciona la segunda posición
-plt.subplot(132)  # Selecciona el segundo panel de la cuadrícula 1x3
-plt.scatter(df['population'], df['median_house_value'], alpha=0.5)
-plt.xlabel('Population')
-plt.ylabel('Median House Value')
+# Segundo histograma
+plt.subplot(132)
+plt.hist(df['median_house_value'], bins=30, alpha=0.5, label='House Value')
+plt.hist(df['population'], bins=30, alpha=0.5, label='Population')
+plt.xlabel('Valor')
+plt.ylabel('Frecuencia')
 plt.title('House Value vs Population')
+plt.legend()
 
-# El tercer subplot (133) selecciona la tercera posición
-plt.subplot(133)  # Selecciona el tercer panel de la cuadrícula 1x3
-plt.hist(df['median_house_value'], bins=30)
+# Tercer histograma (solo median_house_value)
+plt.subplot(133)
+plt.hist(df['median_house_value'], bins=30, color='skyblue')
 plt.xlabel('Median House Value')
-plt.ylabel('Frequency')
+plt.ylabel('Frecuencia')
 plt.title('Distribution of House Values')
 
 plt.tight_layout()
